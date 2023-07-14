@@ -1,4 +1,4 @@
-"""Spawn a cluster and setup the networking, don't do anything else. You get bare metal machines."""
+"""Spawn a cluster and setup the networking, don't do anything else. You get bare metal machines. The difference between this and cluster-select-hardware is this profile contains the latest OS images."""
 
 # Import the Portal object.
 import geni.portal as portal
