@@ -6,11 +6,10 @@ import geni.portal as portal
 import geni.rspec.pg as pg
 # Import the Emulab specific extensions.
 import geni.rspec.emulab as emulab
-DISK_IMAGES = {
-    'ubuntu16': 'urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU16-64-STD',
-    'ubuntu18': 'urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD',
-    'ubuntu20': 'urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU20-64-STD'
-}
+
+# Pick your image.
+imageList = [('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD', 'UBUNTU 20.04'),
+             ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD', 'UBUNTU 22.04')] 
 
 # Create a portal object,
 pc = portal.Context()
@@ -37,9 +36,10 @@ pc.defineParameter("osNodeTypeMaster", "Hardware Type for master",
                      If unset, when you instantiate the profile, the resulting
                      experiment may have machines of any available type
                      allocated.''')
-pc.defineParameter("osNode", "OS for the nodes",
-                   portal.ParameterType.STRING, "ubuntu16", legalValues=sorted(list(DISK_IMAGES.keys())), 
-                   longDescription='''OS for the nodes''')
+pc.defineParameter("osImage", "Select Image",
+                   portal.ParameterType.IMAGE,
+                   imageList[0], imageList,
+                   longDescription="Supported operating systems are Ubuntu and CentOS.") 
 pc.defineParameter("publicIPSlaves", "Request public IP addresses for the slaves or not",
                    portal.ParameterType.BOOLEAN, True)
 
@@ -61,7 +61,7 @@ def create_request(request, role, ip, worker_num=None):
         req.routable_control_ip = params.publicIPSlaves
         if params.osNodeTypeSlave:
             req.hardware_type = params.osNodeTypeSlave
-    req.disk_image = DISK_IMAGES[params.osNode]
+    req.disk_image = params.osImage
     req.addService(pg.Execute(
         'bash',
         "sudo bash /local/repository/bootstrap.sh '{}' 2>&1 | sudo tee -a /local/logs/setup.log".format(
