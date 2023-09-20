@@ -67,8 +67,8 @@ def create_request(request, role, ip, worker_num=None):
         'bash',
         "sudo bash /local/repository/bootstrap.sh '{}' 2>&1 | sudo tee -a /local/logs/setup.log".format(
             role)))
+    iface = []
     if params.slaveCount>0:
-        iface = []
         if params.secondNIC:
             # iface = []
             iface.append(req.addInterface('eth1', pg.IPv4Address(ip, '255.255.255.0')))
