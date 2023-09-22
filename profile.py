@@ -9,7 +9,8 @@ import geni.rspec.emulab as emulab
 
 # Pick your image.
 imageList = [('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD', 'UBUNTU 20.04'),
-             ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD', 'UBUNTU 22.04')] 
+             ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD', 'UBUNTU 22.04'),
+             ('urn:publicid:IDN+utah.cloudlab.us+image+iommu-security-PG0:ubuntu22-gem5-arm-img', 'UBUNTU 22.04 GEM5')] 
 
 # Create a portal object,
 pc = portal.Context()
