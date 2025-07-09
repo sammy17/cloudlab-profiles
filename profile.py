@@ -12,6 +12,7 @@ imageList = [('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU16-64-STD', '
              ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU18-64-STD', 'UBUNTU 18.04'),
              ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD', 'UBUNTU 20.04'),
              ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD', 'UBUNTU 22.04'),
+             ('urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU24-64-STD', 'UBUNTU 24.04'),
              ('urn:publicid:IDN+utah.cloudlab.us+image+iommu-security-PG0:ubuntu22-gem5-arm-img', 'UBUNTU 22.04 GEM5')] 
 
 # Create a portal object,
